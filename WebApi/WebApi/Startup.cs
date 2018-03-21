@@ -48,6 +48,7 @@ namespace WebApi
             services.AddSingleton< IMapper<PersonDto, Person>>(new PersonMapper());
 
             services.AddMvc();
+            services.AddCors();
 
             services.AddSwaggerGen(c =>
             {
@@ -69,6 +70,9 @@ namespace WebApi
             });
 
             app.UseSwagger();
+
+            app.UseCors(builder =>
+                  builder.AllowAnyOrigin());
 
             app.UseMvc();
         }
