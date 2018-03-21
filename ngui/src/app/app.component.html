@@ -3,4 +3,12 @@
     <p-column field="first" header="First Name"></p-column>
     <p-column field="last" header="Last Name"></p-column>
     <p-column field="phone" header="Phone"></p-column>
+
+    <p-column header="Actions" [style]="{'text-align': 'center', 'width':'80px'}">
+        <ng-template let-person="rowData" pTemplate="body">
+          <button pButton type="button" (click)="onEdit(person)" icon="fa-pencil-square-o"></button>
+          <button pButton type="button" (click)="onDelete(person)" icon="fa-trash"></button>
+        </ng-template>
+      </p-column>
+    
   </p-dataTable>

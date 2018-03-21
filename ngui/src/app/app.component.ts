@@ -19,4 +19,13 @@ export class AppComponent implements OnInit {
       this.persons = d;
     }, e => console.log(e));
   }
+
+  onEdit(person: Person) {
+
+    alert(person.first);
+  }
+
+  onDelete(person: Person) {
+    alert(person.first);
+  }
 }
