@@ -45,10 +45,9 @@ namespace WebApi.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public Task Delete(int id)
         {
-            var e = await RestService.GetByIdAsync(id);
-            await RestService.DeleteAsync(e);
+            return RestService.DeleteAsync(id);
         }
     }
 }

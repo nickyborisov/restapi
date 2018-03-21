@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   onDelete(person: Person) {
 
     this.personsService.deletePerson(person.id).subscribe(d => {
-      alert(person.first + ' is deleted');
+      this.onUpdated();
     }, e => console.log(e));
   }
 

@@ -31,10 +31,9 @@ namespace WebApi.Services
             return dto;
         }
 
-        public async virtual Task DeleteAsync(TDto dto)
+        public async virtual Task DeleteAsync(int id)
         {
-            var entity = Mapper.MapDto(dto);
-            await Repository.DeleteAsync(entity);
+            await Repository.DeleteAsync(id);
         }
 
         public async virtual Task<TDto> GetByIdAsync(int id)

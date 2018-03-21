@@ -1,6 +1,7 @@
 ﻿using Domain;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -57,15 +58,10 @@ namespace Infrastructure.Data
             await dbContext.SaveChangesAsync();
         }
 
-        public void Delete(T entity)
+        public async Task DeleteAsync(int id)
         {
-            dbContext.Set<T>().Remove(entity);
-            dbContext.SaveChanges();
-        }
-
-        public async Task DeleteAsync(T entity)
-        {
-            dbContext.Set<T>().Remove(entity);
+            var e = await dbContext.Set<T>().FindAsync(id);
+            dbContext.Set<T>().Remove(e);
             await dbContext.SaveChangesAsync();
         }
     }
