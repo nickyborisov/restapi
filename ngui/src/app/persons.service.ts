@@ -22,18 +22,18 @@ export class PersonsService {
   }
 
   getPerson(id: number): Observable<Person> {
-    return this.http.get<Person>(serverUri + id);
+    return this.http.get<Person>(serverUri + '/' + id);
   }
 
-  insertCat(person: Person): Observable<Person> {
+  insertPerson(person: Person): Observable<Person> {
     return this.http.post<Person>(serverUri, person);
   }
 
-  updateCat(person: Person): Observable<void> {
-    return this.http.put<void>(serverUri + person.id, person);
+  updatePerson(person: Person): Observable<void> {
+    return this.http.put<void>(serverUri + '/' + person.id, person);
   }
 
-  deleteCat(id: number) {
-    return this.http.delete(serverUri + id);
+  deletePerson(id: number) {
+    return this.http.delete(serverUri + '/' + id);
   }
 }

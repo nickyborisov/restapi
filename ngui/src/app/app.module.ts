@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { RadioButtonModule } from 'primeng/primeng';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -20,16 +20,19 @@ import {
   InputTextModule, MenuModule, OverlayPanelModule, AccordionModule, ListboxModule, AccordionTab, FileUploadModule, SlideMenuModule
 } from 'primeng/primeng';
 import { PersonsService } from './persons.service';
+import { PersonComponent } from './person.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PersonComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     AccordionModule,
     PanelModule,
     ButtonModule,

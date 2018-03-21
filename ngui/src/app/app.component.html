@@ -1,14 +1,26 @@
-<p-dataTable [value]="persons" [paginator]="true" [rows]="5" >
+<div class="ui-g-12 ui-fluid">
+  <div class="ui-g-1">
+    <button pButton type="button" label="Add Person" (click)="onAdd()"></button>
+  </div>
+</div>
+
+<div class="ui-g-12 ui-fluid">
+
+  <p-dataTable [value]="persons" [paginator]="true" [rows]="5">
     <p-column field="id" header="Id"></p-column>
     <p-column field="first" header="First Name"></p-column>
     <p-column field="last" header="Last Name"></p-column>
     <p-column field="phone" header="Phone"></p-column>
 
     <p-column header="Actions" [style]="{'text-align': 'center', 'width':'80px'}">
-        <ng-template let-person="rowData" pTemplate="body">
-          <button pButton type="button" (click)="onEdit(person)" icon="fa-pencil-square-o"></button>
-          <button pButton type="button" (click)="onDelete(person)" icon="fa-trash"></button>
-        </ng-template>
-      </p-column>
-    
+      <ng-template let-person="rowData" pTemplate="body">
+        <button pButton type="button" (click)="onEdit(person)" icon="fa-pencil-square-o"></button>
+        <button pButton type="button" (click)="onDelete(person)" icon="fa-trash"></button>
+      </ng-template>
+    </p-column>
+
   </p-dataTable>
+
+</div>
+
+<app-person [isEdit]="isEdit" [isVisible]="isVisible" [model]="currentPerson" (updated)="onUpdated()"></app-person>

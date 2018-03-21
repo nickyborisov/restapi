@@ -45,7 +45,7 @@ namespace WebApi
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddScoped<IPersonsService, PersonsService>();
-            services.AddSingleton< IMapper<PersonDto, Person>>(new PersonMapper());
+            services.AddSingleton<IMapper<PersonDto, Person>>(new PersonMapper());
 
             services.AddMvc();
             services.AddCors();
@@ -72,9 +72,15 @@ namespace WebApi
             app.UseSwagger();
 
             app.UseCors(builder =>
-                  builder.AllowAnyOrigin());
+                  builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseMvc();
+
+            using (var s = app.ApplicationServices.CreateScope())
+            {
+                var context = new DataCtx(s.ServiceProvider.GetRequiredService<DbContextOptions<DataCtx>>());
+                context.Database.EnsureCreated();
+            }
         }
     }
 }

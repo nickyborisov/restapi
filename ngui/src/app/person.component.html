@@ -1,0 +1,56 @@
+<p-dialog [(visible)]="isVisible" modal="modal" showEffect="fade" header="{{title}}" [width]="600" [resizable]="true" appendTo="body">
+
+    <div *ngIf="isVisible" class="container-fluid">
+        <form (submit)=onSubmit()>
+
+            <div class="ui-g-12 ui-g-nopad">
+                <div class="ui-g-3">
+                  First *:
+                </div>
+                <div class="ui-g-4">
+                  <input pInputText [(ngModel)]="model.first" [formControl]="form.controls.first" placeholder="Required" />
+                </div>
+                <div class="ui-g-5">
+                  <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!form.controls.first.valid && form.controls.first.dirty">
+                    <i class="fa fa-close"></i> First Name is required
+                  </div>
+                </div>
+              </div>
+
+              <div class="ui-g-12 ui-g-nopad">
+                  <div class="ui-g-3">
+                    Last *:
+                  </div>
+                  <div class="ui-g-4">
+                    <input pInputText [(ngModel)]="model.last" [formControl]="form.controls.last" placeholder="Required" />
+                  </div>
+                  <div class="ui-g-5">
+                    <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!form.controls.last.valid && form.controls.last.dirty">
+                      <i class="fa fa-close"></i> Last Name is required
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="ui-g-12 ui-g-nopad">
+                    <div class="ui-g-3">
+                      Phone *:
+                    </div>
+                    <div class="ui-g-4">
+                      <input pInputText [(ngModel)]="model.phone" [formControl]="form.controls.phone" placeholder="Required" />
+                    </div>
+                    <div class="ui-g-5">
+                      <div class="ui-message ui-messages-error ui-corner-all" *ngIf="!form.controls.phone.valid && form.controls.phone.dirty">
+                        <i class="fa fa-close"></i> Phone is required
+                      </div>
+                    </div>
+                  </div>
+                      
+          <p>
+            <button type="submit">Save</button>
+          </p>
+        </form>
+      </div>  
+  
+</p-dialog>
+
+  

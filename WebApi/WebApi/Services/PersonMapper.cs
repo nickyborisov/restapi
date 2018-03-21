@@ -15,7 +15,7 @@ namespace WebApi.Services
                 Id = model.Id,
                 Last = model.Last,
                 Phone = model.Phone,
-                Version = BitConverter.GetBytes(model.Version)
+                Version = Parse(model.Version)
             };
         }
 
@@ -27,8 +27,18 @@ namespace WebApi.Services
                 Id = entity.Id,
                 Last = entity.Last,
                 Phone = entity.Phone,
-                Version = BitConverter.ToInt64(entity.Version, 0)
+                Version = ToString(entity.Version)
             };
+        }
+
+        public static string ToString(byte[] rowversionArr)
+        {
+            return string.Format("0x{0}", BitConverter.ToInt64(rowversionArr, 0).ToString("X16"));
+        }
+
+        public static byte[] Parse(string rowversionStr)
+        {
+            return BitConverter.GetBytes(Convert.ToInt64(rowversionStr, 16));
         }
     }
 }

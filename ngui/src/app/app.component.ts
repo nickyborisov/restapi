@@ -10,8 +10,11 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   persons: Array<Person> = [];
+  isVisible: boolean;
+  currentPerson: Person = <any>{};
+  isEdit: boolean;
 
-  constructor(public personsService: PersonsService) {
+  constructor(private personsService: PersonsService) {
   }
 
   ngOnInit(): void {
@@ -20,12 +23,32 @@ export class AppComponent implements OnInit {
     }, e => console.log(e));
   }
 
+  onAdd() {
+
+    this.isEdit = false;
+    this.currentPerson = <any>{};
+    this.isVisible = true;
+  }
+
   onEdit(person: Person) {
 
-    alert(person.first);
+    this.isEdit = true;
+    this.currentPerson = person;
+    this.isVisible = true;
   }
 
   onDelete(person: Person) {
-    alert(person.first);
+
+    this.personsService.deletePerson(person.id).subscribe(d => {
+      alert(person.first + ' is deleted');
+    }, e => console.log(e));
+  }
+
+  onUpdated() {
+    this.isVisible = false;
+
+    this.personsService.getAllPersons().subscribe(d => {
+      this.persons = d;
+    }, e => console.log(e));
   }
 }
